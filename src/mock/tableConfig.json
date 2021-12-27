@@ -1,0 +1,19 @@
+{
+    "columns": [
+        {
+            "header": "ID",
+            "data": "ID",
+            "pinColumn": "none"
+        },
+        {
+            "header": "Name",
+            "data": "Name",
+            "pinColumn": "none"
+        },
+        {
+            "header": "Status",
+            "data": "Status",
+            "pinColumn": "none"
+        }
+    ]
+}
