@@ -20,7 +20,7 @@
             <ng-container body>
               <tr class="table-row" *ngFor="let row of tableData">
                 <td class="column-cell" *ngFor="let col of leftPinnedColumns">
-                  {{ row[col.data] }}
+                  {{ row[col.data] || "-" }}
                 </td>
               </tr>
             </ng-container>
@@ -46,7 +46,7 @@
         <ng-container body>
           <tr class="table-row" *ngFor="let row of tableData">
             <td class="column-cell" *ngFor="let col of scrollableColumns">
-              {{ row[col.data] }}
+              {{ row[col.data] || "-"}}
             </td>
           </tr>
         </ng-container>
@@ -73,7 +73,7 @@
             <ng-container body>
               <tr class="table-row" *ngFor="let row of tableData">
                 <td class="column-cell" *ngFor="let col of rightPinnedColumns">
-                  {{ row[col.data] }}
+                  {{ row[col.data] || "-" }}
                 </td>
               </tr>
             </ng-container>

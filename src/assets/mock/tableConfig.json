@@ -14,7 +14,7 @@
         {
             "header": "Status",
             "data": "Status",
-            "pinColumn": "none"
+            "pinColumn": "right"
         },
         {
             "header": "Phone Number",

@@ -1,43 +1,57 @@
 .table {
+    &-cell {
+        &-borders {
+            .header-cell:not(:last-child),
+            .column-cell:not(:last-child) {
+                border-right: 1px solid grey;
+            }
+        }
+        &-padding {
+            padding: 5px 10px;
+        }
+    }
+    
     &-wrapper {
         margin: 0;
-        border: 1px solid grey;
         border-collapse: collapse;
         display: flex;
         position: relative;
-        background-color: white;
+        background-color: #f1f1f1;
+        border-bottom: 1px solid grey;
+        border-left: 1px solid grey;
+        border-right: 1px solid grey;
+        @extend .table-cell-borders;
+
         .scrollable-content {
             overflow-x: scroll;
             position: relative;
-        }
-    
-        .pinned-left-content {
+            background-color: white;
+            border-top: 1px solid grey;
             border-right: 1px solid grey;
-            // position: fixed;
-            overflow-x: visible;
+            border-left: 1px solid grey;
         }
     
+        .pinned-left-content,
         .pinned-right-content {
-            border-left: 1px solid grey;
+            height: max-content;
+            background-color: white;
+            border-top: 1px solid grey;
         }
     }
     
     &-header {
         border-bottom: 1px solid grey;
         .header-cell {
-            padding: 5px 10px;
-            &:not(:last-child) {
-                border-right: 1px solid grey;
-            }
+            @extend .table-cell-padding;
         }
     }
 
     &-body {
+        .table-row {
+            border-bottom: 1px solid #eff1f4;
+        }
         .column-cell {
-            padding: 5px 10px;
-            &:not(:last-child)  {
-                border-right: 1px solid grey;
-            }
+            @extend .table-cell-padding;
         }
     }
 }
