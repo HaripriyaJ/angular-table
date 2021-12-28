@@ -1,0 +1,43 @@
+.table {
+    &-wrapper {
+        margin: 0;
+        border: 1px solid grey;
+        border-collapse: collapse;
+        display: flex;
+        position: relative;
+        background-color: white;
+        .scrollable-content {
+            overflow-x: scroll;
+            position: relative;
+        }
+    
+        .pinned-left-content {
+            border-right: 1px solid grey;
+            // position: fixed;
+            overflow-x: visible;
+        }
+    
+        .pinned-right-content {
+            border-left: 1px solid grey;
+        }
+    }
+    
+    &-header {
+        border-bottom: 1px solid grey;
+        .header-cell {
+            padding: 5px 10px;
+            &:not(:last-child) {
+                border-right: 1px solid grey;
+            }
+        }
+    }
+
+    &-body {
+        .column-cell {
+            padding: 5px 10px;
+            &:not(:last-child)  {
+                border-right: 1px solid grey;
+            }
+        }
+    }
+}

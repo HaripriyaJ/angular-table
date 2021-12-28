@@ -1,1 +1,86 @@
-<p>app-table works!</p>
+<table class="table-wrapper">
+  <ng-container *ngIf="!noResults; else noResultsContainer">
+    <!-- Columns pinned to the left -->
+    <div class="pinned-left-content" *ngIf="leftPinnedColumns.length">
+        <app-table-content>
+            <ng-container header>
+              <th
+                class="header-cell"
+                *ngFor="let column of leftPinnedColumns"
+                [attr.data-header]="column?.header"
+                [ngStyle]="{
+                  'min-width': column?.columnWidth
+                    ? column?.columnWidth + 'px'
+                    : '200px'
+                }"
+              >
+                {{ column?.header }}
+              </th>
+            </ng-container>
+            <ng-container body>
+              <tr class="table-row" *ngFor="let row of tableData">
+                <td class="column-cell" *ngFor="let col of leftPinnedColumns">
+                  {{ row[col.data] }}
+                </td>
+              </tr>
+            </ng-container>
+        </app-table-content>
+    </div>
+
+    <div class="scrollable-content">
+      <app-table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of getPinnedColumns('none')"
+            [attr.data-header]="column?.header"
+            [ngStyle]="{
+              'min-width': column?.columnWidth
+                ? column?.columnWidth + 'px'
+                : '200px'
+            }"
+          >
+            {{ column?.header }}
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr class="table-row" *ngFor="let row of tableData">
+            <td class="column-cell" *ngFor="let col of scrollableColumns">
+              {{ row[col.data] }}
+            </td>
+          </tr>
+        </ng-container>
+      </app-table-content>
+    </div>
+
+    <!-- Columns pinned to the right -->
+    <div class="pinned-right-content" *ngIf="rightPinnedColumns.length">
+        <app-table-content>
+            <ng-container header>
+              <th
+                class="header-cell"
+                *ngFor="let column of rightPinnedColumns"
+                [attr.data-header]="column?.header"
+                [ngStyle]="{
+                  'min-width': column?.columnWidth
+                    ? column?.columnWidth + 'px'
+                    : '200px'
+                }"
+              >
+                {{ column?.header }}
+              </th>
+            </ng-container>
+            <ng-container body>
+              <tr class="table-row" *ngFor="let row of tableData">
+                <td class="column-cell" *ngFor="let col of rightPinnedColumns">
+                  {{ row[col.data] }}
+                </td>
+              </tr>
+            </ng-container>
+        </app-table-content>
+    </div>
+  </ng-container>
+  <ng-template #noResultsContainer>
+    Content to render when value is null.
+  </ng-template>
+</table>

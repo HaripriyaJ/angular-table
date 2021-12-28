@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppTableComponent } from './app-table/app-table.component';
+import { AppTableContentComponent } from './app-table/app-table-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppTableComponent
+    AppTableComponent,
+    AppTableContentComponent
   ],
   imports: [
     BrowserModule,

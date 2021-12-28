@@ -3,7 +3,8 @@
         {
             "header": "ID",
             "data": "ID",
-            "pinColumn": "none"
+            "pinColumn": "left",
+            "columnWidth": 50
         },
         {
             "header": "Name",
@@ -14,6 +15,30 @@
             "header": "Status",
             "data": "Status",
             "pinColumn": "none"
+        },
+        {
+            "header": "Phone Number",
+            "data": "Phone Number",
+            "pinColumn": "right",
+            "columnWidth": 500
+        },
+        {
+            "header": "Phone Number 1",
+            "data": "Phone Number 1",
+            "pinColumn": "none",
+            "columnWidth": 500
+        },
+        {
+            "header": "Phone Number 2",
+            "data": "Phone Number 2",
+            "pinColumn": "left",
+            "columnWidth": 200
+        },
+        {
+            "header": "Address",
+            "data": "Address",
+            "pinColumn": "none",
+            "columnWidth": 500
         }
     ]
 }
