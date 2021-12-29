@@ -1,30 +1,38 @@
-<table class="table-wrapper">
+<table
+  class="table-wrapper"
+  [ngClass]="
+    tableColumns.scrollableColumns.length ? 'scroll-overlay' : 'scroll'
+  "
+>
   <ng-container *ngIf="!noResults; else noResultsContainer">
     <!-- Columns pinned to the left -->
-    <div class="pinned-left-content" *ngIf="leftPinnedColumns.length">
-        <app-table-content>
-            <ng-container header>
-              <th
-                class="header-cell"
-                *ngFor="let column of leftPinnedColumns"
-                [attr.data-header]="column?.header"
-                [ngStyle]="{
-                  'min-width': column?.columnWidth
-                    ? column?.columnWidth + 'px'
-                    : '200px'
-                }"
-              >
-                {{ column?.header }}
-              </th>
-            </ng-container>
-            <ng-container body>
-              <tr class="table-row" *ngFor="let row of tableData">
-                <td class="column-cell" *ngFor="let col of leftPinnedColumns">
-                  {{ row[col.data] || "-" }}
-                </td>
-              </tr>
-            </ng-container>
-        </app-table-content>
+    <div class="pinned-left-content" *ngIf="tableColumns.leftColumns.length">
+      <app-table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of tableColumns.leftColumns"
+            [attr.data-header]="column?.header"
+            [ngStyle]="columnStyle(column?.columnWidth)"
+          >
+            {{ column?.header }}
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.leftColumns"
+            >
+              {{ row[col.data] || "-" }}
+            </td>
+          </tr>
+        </ng-container>
+      </app-table-content>
     </div>
 
     <div class="scrollable-content">
@@ -32,21 +40,24 @@
         <ng-container header>
           <th
             class="header-cell"
-            *ngFor="let column of getPinnedColumns('none')"
+            *ngFor="let column of tableColumns.scrollableColumns"
             [attr.data-header]="column?.header"
-            [ngStyle]="{
-              'min-width': column?.columnWidth
-                ? column?.columnWidth + 'px'
-                : '200px'
-            }"
+            [ngStyle]="columnStyle(column?.columnWidth)"
           >
             {{ column?.header }}
           </th>
         </ng-container>
         <ng-container body>
-          <tr class="table-row" *ngFor="let row of tableData">
-            <td class="column-cell" *ngFor="let col of scrollableColumns">
-              {{ row[col.data] || "-"}}
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.scrollableColumns"
+            >
+              {{ row[col.data] || "-" }}
             </td>
           </tr>
         </ng-container>
@@ -54,30 +65,33 @@
     </div>
 
     <!-- Columns pinned to the right -->
-    <div class="pinned-right-content" *ngIf="rightPinnedColumns.length">
-        <app-table-content>
-            <ng-container header>
-              <th
-                class="header-cell"
-                *ngFor="let column of rightPinnedColumns"
-                [attr.data-header]="column?.header"
-                [ngStyle]="{
-                  'min-width': column?.columnWidth
-                    ? column?.columnWidth + 'px'
-                    : '200px'
-                }"
-              >
-                {{ column?.header }}
-              </th>
-            </ng-container>
-            <ng-container body>
-              <tr class="table-row" *ngFor="let row of tableData">
-                <td class="column-cell" *ngFor="let col of rightPinnedColumns">
-                  {{ row[col.data] || "-" }}
-                </td>
-              </tr>
-            </ng-container>
-        </app-table-content>
+    <div class="pinned-right-content" *ngIf="tableColumns.rightColumns.length">
+      <app-table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of tableColumns.rightColumns"
+            [attr.data-header]="column?.header"
+            [ngStyle]="columnStyle(column?.columnWidth)"
+          >
+            {{ column?.header }}
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.rightColumns"
+            >
+              {{ row[col.data] || "-" }}
+            </td>
+          </tr>
+        </ng-container>
+      </app-table-content>
     </div>
   </ng-container>
   <ng-template #noResultsContainer>

@@ -9,7 +9,7 @@
         {
             "header": "Name",
             "data": "Name",
-            "pinColumn": "none"
+            "pinColumn": "left"
         },
         {
             "header": "Status",
@@ -25,13 +25,13 @@
         {
             "header": "Phone Number 1",
             "data": "Phone Number 1",
-            "pinColumn": "none",
+            "pinColumn": "left",
             "columnWidth": 500
         },
         {
             "header": "Phone Number 2",
             "data": "Phone Number 2",
-            "pinColumn": "left",
+            "pinColumn": "none",
             "columnWidth": 200
         },
         {

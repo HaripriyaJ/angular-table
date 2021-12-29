@@ -22,6 +22,17 @@
         border-right: 1px solid grey;
         @extend .table-cell-borders;
 
+        &.scroll-overlay {
+            overflow-x: overlay;
+        }
+    
+        &.scroll {
+            overflow-x: scroll;
+            .scrollable-content {
+                overflow: hidden;
+            }
+        }
+
         .scrollable-content {
             overflow-x: scroll;
             position: relative;
@@ -29,6 +40,7 @@
             border-top: 1px solid grey;
             border-right: 1px solid grey;
             border-left: 1px solid grey;
+            flex: 1; 
         }
     
         .pinned-left-content,
@@ -49,9 +61,14 @@
     &-body {
         .table-row {
             border-bottom: 1px solid #eff1f4;
+            height: 42px;
         }
         .column-cell {
             @extend .table-cell-padding;
+            max-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 }
