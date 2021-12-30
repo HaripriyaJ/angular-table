@@ -44,9 +44,16 @@ export class AppTableComponent implements OnChanges {
   public getPinnedColumns(
     direction: 'left' | 'right' | 'none'
   ): IColumnConfig[] {
-    return this.tableColumnConfig
-      .filter((col) => col.pinColumn === direction)
-      .sort((a, b) => a.pinOrder - b.pinOrder);
+    let tableColumnConfig = this.tableColumnConfig.filter(
+      (col) => col.pinColumn === direction
+    );
+    if (direction !== 'none') {
+      // Reverse sort for right pinned columns
+      tableColumnConfig = tableColumnConfig.sort((a, b) =>
+        direction === 'left' ? a.pinOrder - b.pinOrder : b.pinOrder - a.pinOrder
+      );
+    }
+    return tableColumnConfig;
   }
 
   // Style columns
