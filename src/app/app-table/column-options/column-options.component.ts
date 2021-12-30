@@ -12,12 +12,21 @@ export class ColumnOptionsComponent {
   @Output() changeColumnConfig: EventEmitter<IColumnConfig> = new EventEmitter();
 
   public showOptions: boolean = false;
+  public screenPosition!: number;
 
-  public toggleColumnOptions() {
+  public toggleColumnOptions(event: any) {
+    !this.showOptions ? (this.screenPosition = event.clientX) : (this.screenPosition = 0);
     this.showOptions = !this.showOptions;
   }
 
   public pinColumn(direction: "left" | "right" | "none") {
     this.changeColumnConfig.emit({...this.columnConfig, pinColumn: direction});
+  }
+
+  public positionOptions(): any {
+    if (this.showOptions) {
+      return this.screenPosition < window.screen.width / 2 ? {'left': this.screenPosition} : {'right': 0};
+    }
+    return ''; 
   }
 }
