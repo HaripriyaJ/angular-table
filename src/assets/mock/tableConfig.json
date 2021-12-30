@@ -4,29 +4,34 @@
             "header": "ID",
             "data": "ID",
             "pinColumn": "left",
-            "columnWidth": 50
+            "columnWidth": 50,
+            "pinOrder": 1
         },
         {
             "header": "Name",
             "data": "Name",
-            "pinColumn": "left"
+            "pinColumn": "left",
+            "pinOrder": 3
         },
         {
             "header": "Status",
             "data": "Status",
-            "pinColumn": "right"
+            "pinColumn": "right",
+            "pinOrder": 2
         },
         {
             "header": "Phone Number",
             "data": "Phone Number",
             "pinColumn": "right",
-            "columnWidth": 500
+            "columnWidth": 500,
+            "pinOrder": 1
         },
         {
             "header": "Phone Number 1",
             "data": "Phone Number 1",
             "pinColumn": "left",
-            "columnWidth": 500
+            "columnWidth": 500,
+            "pinOrder": 2
         },
         {
             "header": "Phone Number 2",

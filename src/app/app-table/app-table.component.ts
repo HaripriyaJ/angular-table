@@ -40,13 +40,20 @@ export class AppTableComponent implements OnChanges {
     } else this.noResults = true;
   }
 
-  public getPinnedColumns(direction: 'left' | 'right' | 'none'): IColumnConfig[] {
-    return this.tableColumnConfig.filter((col) => col.pinColumn === direction);
+  // Return pinned columns in order of their pinning
+  public getPinnedColumns(
+    direction: 'left' | 'right' | 'none'
+  ): IColumnConfig[] {
+    return this.tableColumnConfig
+      .filter((col) => col.pinColumn === direction)
+      .sort((a, b) => a.pinOrder - b.pinOrder);
   }
 
   // Style columns
   public columnStyle(columnWidth: any): any {
-    return columnWidth ? {'min-width': columnWidth + 'px'} : { 'width': this.getAutoColumnWidth('none'), 'min-width': '200px'}
+    return columnWidth
+      ? { 'min-width': columnWidth + 'px' }
+      : { width: this.getAutoColumnWidth('none'), 'min-width': '200px' };
   }
 
   // Function to apply equal width to each column with no predefined width
@@ -60,6 +67,14 @@ export class AppTableComponent implements OnChanges {
   }
 
   public handleColumConfigChange(config: IColumnConfig) {
-    this.changeTableConfig.emit(config);
+    let formattedConfig: IColumnConfig = config;
+    // Add or remove pinOrder
+    config.pinColumn === 'none'
+      ? delete formattedConfig.pinOrder
+      : (formattedConfig = {
+          ...config,
+          pinOrder: this.tableColumns[`${config.pinColumn}Columns`].length + 1,
+        });
+    this.changeTableConfig.emit(formattedConfig);
   }
 }
