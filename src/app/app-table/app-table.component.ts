@@ -40,12 +40,12 @@ export class AppTableComponent implements OnChanges {
     } else this.noResults = true;
   }
 
-  public getPinnedColumns(direction: 'left' | 'right' | 'none') {
+  public getPinnedColumns(direction: 'left' | 'right' | 'none'): IColumnConfig[] {
     return this.tableColumnConfig.filter((col) => col.pinColumn === direction);
   }
 
   // Style columns
-  public columnStyle(columnWidth: any) {
+  public columnStyle(columnWidth: any): any {
     return columnWidth ? {'min-width': columnWidth + 'px'} : { 'width': this.getAutoColumnWidth('none'), 'min-width': '200px'}
   }
 
