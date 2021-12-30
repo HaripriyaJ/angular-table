@@ -7,7 +7,7 @@
   <ng-container *ngIf="!noResults; else noResultsContainer">
     <!-- Columns pinned to the left -->
     <div class="pinned-left-content" *ngIf="tableColumns.leftColumns.length">
-      <app-table-content>
+      <table-content>
         <ng-container header>
           <th
             class="header-cell"
@@ -15,7 +15,13 @@
             [attr.data-header]="column?.header"
             [ngStyle]="columnStyle(column?.columnWidth)"
           >
-            {{ column?.header }}
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
           </th>
         </ng-container>
         <ng-container body>
@@ -32,11 +38,11 @@
             </td>
           </tr>
         </ng-container>
-      </app-table-content>
+      </table-content>
     </div>
 
     <div class="scrollable-content">
-      <app-table-content>
+      <table-content>
         <ng-container header>
           <th
             class="header-cell"
@@ -44,7 +50,13 @@
             [attr.data-header]="column?.header"
             [ngStyle]="columnStyle(column?.columnWidth)"
           >
-            {{ column?.header }}
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
           </th>
         </ng-container>
         <ng-container body>
@@ -61,12 +73,12 @@
             </td>
           </tr>
         </ng-container>
-      </app-table-content>
+      </table-content>
     </div>
 
     <!-- Columns pinned to the right -->
     <div class="pinned-right-content" *ngIf="tableColumns.rightColumns.length">
-      <app-table-content>
+      <table-content>
         <ng-container header>
           <th
             class="header-cell"
@@ -74,7 +86,13 @@
             [attr.data-header]="column?.header"
             [ngStyle]="columnStyle(column?.columnWidth)"
           >
-            {{ column?.header }}
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
           </th>
         </ng-container>
         <ng-container body>
@@ -91,7 +109,7 @@
             </td>
           </tr>
         </ng-container>
-      </app-table-content>
+      </table-content>
     </div>
   </ng-container>
   <ng-template #noResultsContainer>

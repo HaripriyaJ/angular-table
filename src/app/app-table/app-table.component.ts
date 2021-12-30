@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { IColumnConfig } from 'src/interfaces/tableConfig';
 
 @Component({
@@ -9,8 +9,9 @@ import { IColumnConfig } from 'src/interfaces/tableConfig';
 })
 
 export class AppTableComponent implements OnChanges {
-  @Input('tableConfig') tableConfig: IColumnConfig[] = [];
+  @Input('tableColumnConfig') tableColumnConfig: IColumnConfig[] = [];
   @Input('tableData') tableData: any[] = [];
+  @Output() changeTableConfig: EventEmitter<IColumnConfig> = new EventEmitter();
 
   public tableColumns: {
     [index: string]: any;
@@ -29,7 +30,7 @@ export class AppTableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     // Display table if data is present
-    if (this.tableConfig.length && this.tableData.length) {
+    if (this.tableColumnConfig.length && this.tableData.length) {
       this.noResults = false;
       this.tableColumns = {
         leftColumns: this.getPinnedColumns('left'),
@@ -40,7 +41,7 @@ export class AppTableComponent implements OnChanges {
   }
 
   public getPinnedColumns(direction: 'left' | 'right' | 'none') {
-    return this.tableConfig.filter((col) => col.pinColumn === direction);
+    return this.tableColumnConfig.filter((col) => col.pinColumn === direction);
   }
 
   // Style columns
@@ -56,5 +57,9 @@ export class AppTableComponent implements OnChanges {
         direction === 'none' ? 'scrollableColumns' : `${direction}Columns`
       ].filter((col: IColumnConfig) => !col?.columnWidth).length
     }%`;
+  }
+
+  public handleColumConfigChange(config: IColumnConfig) {
+    this.changeTableConfig.emit(config);
   }
 }

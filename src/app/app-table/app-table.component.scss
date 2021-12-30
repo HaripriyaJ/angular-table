@@ -55,6 +55,16 @@
         border-bottom: 1px solid grey;
         .header-cell {
             @extend .table-cell-padding;
+            position: relative;
+            &-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .ham-icon {
+                cursor: pointer;
+            }
         }
     }
 
