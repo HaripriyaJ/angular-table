@@ -29,6 +29,9 @@
             class="table-row"
             *ngFor="let row of tableData; let i = index"
             [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
           >
             <td
               class="column-cell"
@@ -64,6 +67,9 @@
             class="table-row"
             *ngFor="let row of tableData; let i = index"
             [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
           >
             <td
               class="column-cell"
@@ -100,6 +106,9 @@
             class="table-row"
             *ngFor="let row of tableData; let i = index"
             [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
           >
             <td
               class="column-cell"

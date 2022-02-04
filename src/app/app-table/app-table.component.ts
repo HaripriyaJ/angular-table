@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 import { IColumnConfig } from 'src/interfaces/tableConfig';
 
 @Component({
@@ -7,7 +15,6 @@ import { IColumnConfig } from 'src/interfaces/tableConfig';
   styleUrls: ['./app-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-
 export class AppTableComponent implements OnChanges {
   @Input('tableColumnConfig') tableColumnConfig: IColumnConfig[] = [];
   @Input('tableData') tableData: any[] = [];
@@ -23,6 +30,7 @@ export class AppTableComponent implements OnChanges {
     rightColumns: [],
     scrollableColumns: [],
   };
+  public tableRowHeight: number[] = [];
 
   public noResults: boolean = true;
 
@@ -83,5 +91,14 @@ export class AppTableComponent implements OnChanges {
           pinOrder: this.tableColumns[`${config.pinColumn}Columns`].length + 1,
         });
     this.changeTableConfig.emit(formattedConfig);
+  }
+
+  public dynamicTableHeight(height: number, index: number) {
+    this.tableRowHeight.length < this.tableData.length
+      ? (this.tableRowHeight = [...this.tableRowHeight, height])
+      : (this.tableRowHeight[index] =
+          this.tableRowHeight[index] > height
+            ? this.tableRowHeight[index]
+            : height);
   }
 }

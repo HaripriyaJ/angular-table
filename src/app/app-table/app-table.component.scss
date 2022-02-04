@@ -71,14 +71,11 @@
     &-body {
         .table-row {
             border-bottom: 1px solid #eff1f4;
-            height: 42px;
         }
         .column-cell {
             @extend .table-cell-padding;
             max-width: 0;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
     }
 }
