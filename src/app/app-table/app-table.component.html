@@ -1,0 +1,127 @@
+<table
+  class="table-wrapper"
+  [ngClass]="
+    tableColumns.scrollableColumns.length ? 'scroll-overlay' : 'scroll'
+  "
+>
+  <ng-container *ngIf="!noResults; else noResultsContainer">
+    <!-- Columns pinned to the left -->
+    <div class="pinned-left-content" *ngIf="tableColumns.leftColumns.length">
+      <table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of tableColumns.leftColumns"
+            [attr.data-header]="column?.header"
+            [ngStyle]="columnStyle(column?.columnWidth)"
+          >
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.leftColumns"
+            >
+              {{ row[col.data] || "-" }}
+            </td>
+          </tr>
+        </ng-container>
+      </table-content>
+    </div>
+
+    <div class="scrollable-content">
+      <table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of tableColumns.scrollableColumns"
+            [attr.data-header]="column?.header"
+            [ngStyle]="columnStyle(column?.columnWidth)"
+          >
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.scrollableColumns"
+            >
+              {{ row[col.data] || "-" }}
+            </td>
+          </tr>
+        </ng-container>
+      </table-content>
+    </div>
+
+    <!-- Columns pinned to the right -->
+    <div class="pinned-right-content" *ngIf="tableColumns.rightColumns.length">
+      <table-content>
+        <ng-container header>
+          <th
+            class="header-cell"
+            *ngFor="let column of tableColumns.rightColumns"
+            [attr.data-header]="column?.header"
+            [ngStyle]="columnStyle(column?.columnWidth)"
+          >
+            <div class="header-cell-content">
+              {{ column?.header }}
+              <column-options
+                [columnConfig]="column"
+                (changeColumnConfig)="handleColumConfigChange($event)"
+              ></column-options>
+            </div>
+          </th>
+        </ng-container>
+        <ng-container body>
+          <tr
+            class="table-row"
+            *ngFor="let row of tableData; let i = index"
+            [attr.data-row_id]="i"
+            calcHeight
+            (calculatedHeight)="dynamicTableHeight($event, i)"
+            [ngStyle]="{'height': tableRowHeight[i] + 'px' }"
+          >
+            <td
+              class="column-cell"
+              *ngFor="let col of tableColumns.rightColumns"
+            >
+              {{ row[col.data] || "-" }}
+            </td>
+          </tr>
+        </ng-container>
+      </table-content>
+    </div>
+  </ng-container>
+  <ng-template #noResultsContainer>
+    Content to render when value is null.
+  </ng-template>
+</table>

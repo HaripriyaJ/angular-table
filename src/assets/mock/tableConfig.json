@@ -1,0 +1,44 @@
+{
+    "columns": [
+        {
+            "header": "ID",
+            "data": "ID",
+            "pinColumn": "none",
+            "columnWidth": 50
+        },
+        {
+            "header": "Name",
+            "data": "Name",
+            "pinColumn": "none"
+        },
+        {
+            "header": "Status",
+            "data": "Status",
+            "pinColumn": "none"
+        },
+        {
+            "header": "Phone Number",
+            "data": "Phone Number",
+            "pinColumn": "none",
+            "columnWidth": 500
+        },
+        {
+            "header": "Phone Number 1",
+            "data": "Phone Number 1",
+            "pinColumn": "none",
+            "columnWidth": 500
+        },
+        {
+            "header": "Phone Number 2",
+            "data": "Phone Number 2",
+            "pinColumn": "none",
+            "columnWidth": 200
+        },
+        {
+            "header": "Address",
+            "data": "Address",
+            "pinColumn": "none",
+            "columnWidth": 500
+        }
+    ]
+}

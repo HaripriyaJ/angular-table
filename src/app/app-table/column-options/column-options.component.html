@@ -1,0 +1,48 @@
+<ng-container (blur)="toggleColumnOptions($event)">
+  <i
+    class="fa fa-bars ham-icon"
+    aria-hidden="true"
+    title="Options"
+    (click)="toggleColumnOptions($event)"
+  ></i>
+
+  <div
+    *ngIf="showOptions"
+    class="column-options-wrapper"
+    [ngStyle]="positionOptions()"
+  >
+    <div class="column-option">
+      <i class="fa fa-map-pin column-option-icon" aria-hidden="true"></i>
+      Pin Column
+      <div class="column-option-suboption">
+        <span
+          [ngClass]="
+            columnConfig.pinColumn === 'left'
+              ? 'column-option-suboption-icon'
+              : ''
+          "
+          (click)="pinColumn('left')"
+          >Pin Left</span
+        >
+        <span
+          [ngClass]="
+            columnConfig.pinColumn === 'right'
+              ? 'column-option-suboption-icon'
+              : ''
+          "
+          (click)="pinColumn('right')"
+          >Pin Right</span
+        >
+        <span
+          [ngClass]="
+            columnConfig.pinColumn === 'none'
+              ? 'column-option-suboption-icon'
+              : ''
+          "
+          (click)="pinColumn('none')"
+          >No Pin</span
+        >
+      </div>
+    </div>
+  </div>
+</ng-container>

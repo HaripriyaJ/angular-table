@@ -1,1 +1,7 @@
 <h1>Table</h1>
+
+<app-table
+  [tableColumnConfig]="tableColumnConfig"
+  [tableData]="tableData"
+  (changeTableConfig)="updateTableColumnConfig($event)"
+></app-table>
